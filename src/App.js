@@ -1,6 +1,6 @@
 import React, { useEffect }  from 'react';
 import './App.css';
-import DashboardLayout from './components/DashboardLayout';
+import Dashboard from './components/Dashboard';
 
 const App = () => {
 
@@ -64,7 +64,7 @@ const App = () => {
   }, []); // Empty dependency array means this effect runs once after mounting
 
   return (
-    <DashboardLayout />
+    <Dashboard />
   )
 };
 

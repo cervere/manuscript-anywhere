@@ -73,7 +73,10 @@ body {
   font: 16px/1.5 "Lato", sans-serif;
 }
 
-
+.subsection-text {
+  font: 16px/1.5 "Lato", sans-serif;
+  padding: 10px;
+}
 /* HEADER STYLES
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .page-header {
@@ -299,10 +302,16 @@ body {
 
 .page-content .grid > article {
   display: flex;
+  flex-direction: column;
   height: 300px;
   background: var(--page-content-blockColor);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
+}
+
+.page-content .grid > article > .subsection-text {
+  flex-grow: 1; /* Make the child occupy all available space if it's the only one */
+  border: 1px solid #000;
 }
 
 .page-content .grid > article:first-child,
