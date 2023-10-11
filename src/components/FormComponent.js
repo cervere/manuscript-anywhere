@@ -38,17 +38,17 @@ const FormComponent = () => {
       {/* Add more input fields here */}
       <button type="submit">Submit</button>
       <section className="grid">
-    <Subsection />
-    <Subsection />
-    <Subsection />
-    <article></article>
-    <article></article>
-    <article></article>
-    <article></article>
-    <article></article>
-    <article></article>
-    <article></article>
-  </section>
+        <Subsection />
+        <Subsection />
+        <Subsection />
+        <article></article>
+        <article></article>
+        <article></article>
+        <article></article>
+        <article></article>
+        <article></article>
+        <article></article>
+      </section>
     </form>
   );
 };
