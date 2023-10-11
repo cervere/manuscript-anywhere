@@ -1,11 +1,12 @@
-const Subsection = () => {
+const Subsection = (props) => {
 
+    const {title} = props;
     return (
     <article>
-        <h3> Title </h3>
+        <h3> {title} </h3>
         <textarea id="message" name="message" className="subsection-text"/>
-        </article>    
-        )
+    </article>    
+    )
 }
 
 export default Subsection

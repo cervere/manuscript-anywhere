@@ -15,6 +15,9 @@
   --black: #333;
   --blue: #00b9eb;
   --red: #ec1848;
+  --pastel-red: #fb6f92;
+  --pastel-blue: #52b2cf;
+  --pastel-green: #caffbf ;
   --border-radius: 4px;
   --box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.075);
   --switch-bgLightModeColor: #87cefa;
@@ -75,6 +78,7 @@ body {
 
 .subsection-text {
   font: 16px/1.5 "Lato", sans-serif;
+  border: 10px solid var(--pastel-blue);
   padding: 10px;
 }
 /* HEADER STYLES
@@ -311,7 +315,20 @@ body {
 
 .page-content .grid > article > .subsection-text {
   flex-grow: 1; /* Make the child occupy all available space if it's the only one */
-  border: 1px solid #000;
+  border: 3px solid var(--pastel-blue)
+}
+
+.parse-area {
+  flex-grow: 1; /* Make the child occupy all available space if it's the only one */
+  border: 5px solid var(--pastel-green);
+}
+
+.parse-area:focus {
+  outline: none; /* Remove the default focus outline (use this cautiously for accessibility) */
+}
+
+.parse-area.parse-error {
+  border: 3px solid var(--pastel-red);
 }
 
 .page-content .grid > article:first-child,

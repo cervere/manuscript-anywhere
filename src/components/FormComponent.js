@@ -28,15 +28,6 @@ const FormComponent = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="firstName"
-        value={formData.firstName || ''}
-        onChange={handleInputChange}
-        placeholder="First Name"
-      />
-      {/* Add more input fields here */}
-      <button type="submit">Submit</button>
       <section className="grid">
         <Subsection />
         <Subsection />
