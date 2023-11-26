@@ -5,9 +5,8 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Subsection from '../Subsection';
-
 import Button from '@mui/material/Button';
-
+import {exportManuscript} from '../DocExporter';
 
 const notesExample = {
     sections : [
@@ -48,12 +47,6 @@ export default function Article({metadata}) {
   const [parsedNotes, setParsedNotes] = useState();
   const [articleData, setArticleData] = useState(metadata);
 
-  useEffect(() => {
-    if(parsedNotes) {
-        setArticleData({...articleData, ...parsedNotes})
-    }
-  }, [parsedNotes, articleData]);
-
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
@@ -69,7 +62,10 @@ export default function Article({metadata}) {
         if (parseError) {
             notesArea.classList.remove('parse-error')
         }
-    } catch (error) {
+        if(parsedNotes) {
+          setArticleData({...articleData, ...parsedNotes})
+        }
+      } catch (error) {
         setParsedNotes();
         if (!parseError) {
             notesArea.classList.add('parse-error')
@@ -80,18 +76,40 @@ export default function Article({metadata}) {
   const onNotesReset = (event) => {
       event.preventDefault();
       console.log('Reset')
-      setNotes('');  
+      setNotes('');
+      setParsedNotes();
+      setArticleData(metadata);  
+  }
+
+  const updateArticleData = (subTitle, subContent) => {
+
+    const content = articleData.content || {}
+
+    content[subTitle] = subContent;
+
+    setArticleData({...articleData, content})
+
   }
 
   const startWithDefaultNotes = (event) => {
     event.preventDefault();
     setNotes(JSON.stringify(notesExample, null, 2));
     setParsedNotes(notesExample);
+    setArticleData({...articleData, ...notesExample})
   }
 
   return (
     <div>
       <h1> {articleData.title} </h1>
+      {
+        console.log(`articleData ${JSON.stringify(articleData)}`)
+      }
+      <Button 
+      disabled={!articleData.content || articleData.content === {}}
+      variant="contained" 
+      onClick={() => exportManuscript(articleData)}> 
+      Export to DOCX 
+      </Button>
       <Accordion sx={{margin: "10px 0;", backgroundColor:"lightblue"}} expanded={expanded === 'panel0'} onChange={handleChange('panel0')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -137,7 +155,9 @@ export default function Article({metadata}) {
                 {
                     section.subsections?.map((subsection, subsecIdx) => (
                         <Subsection 
+                        key={`${secIdx+1}.${subsecIdx+1} ${subsection.title}`}
                         title={`${secIdx+1}.${subsecIdx+1} ${subsection.title}`}
+                        updateArticleData={updateArticleData}
                         />
                     ))
                 }

@@ -1,6 +1,7 @@
-import React, { useEffect }  from 'react';
+import React, { useEffect, StrictMode }  from 'react';
 import './App.css';
-import Dashboard from './components/Dashboard';
+import HomePage from './components/HomePage';
+import {BrowserRouter} from "react-router-dom" 
 
 const App = () => {
 
@@ -64,7 +65,11 @@ const App = () => {
   }, []); // Empty dependency array means this effect runs once after mounting
 
   return (
-    <Dashboard />
+<StrictMode> 
+    <BrowserRouter>     
+      <HomePage />
+    </BrowserRouter> 
+</StrictMode>
   )
 };
 

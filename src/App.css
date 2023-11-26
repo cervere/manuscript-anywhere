@@ -81,6 +81,11 @@ body {
   border: 10px solid var(--pastel-blue);
   padding: 10px;
 }
+
+.bold-text {
+  font-weight: bold;
+}
+
 /* HEADER STYLES
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .page-header {
